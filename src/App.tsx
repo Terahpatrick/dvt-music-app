@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SearchContextProvider from "store/store";
+import GlobalStyle from "styles/globalStyles";
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import TracksPage from "pages/TrackPage";
+import ArtistPage from "pages/AlbumPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <SearchContextProvider>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<TracksPage />} />
+          <Route path="/:albumId" element={<ArtistPage />} />
+        </Routes>
+      </SearchContextProvider>
+    </Router>
   );
 }
 
